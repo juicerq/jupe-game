@@ -83,17 +83,17 @@ size = Vector2(12, 6)
 atlas = ExtResource("3_dn4c7")
 region = Rect2(15.3141, 2.2379, 7.91379, 19.9823)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_g2brh")
 
 [node name="StatsComponent" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2_70d11")
-attack = 20
+attack = 10
 critical_chance = 5
 metadata/_custom_type_script = "uid://dqp0iw4nkxyn4"
 
-[node name="Health" type="Node" parent="." node_paths=PackedStringArray("body")]
+[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("body")]
 unique_name_in_owner = true
 script = ExtResource("2_qu4a1")
 max_health = 50

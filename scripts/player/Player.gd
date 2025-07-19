@@ -8,8 +8,6 @@ func _physics_process(delta):
 	character_direction.y = Input.get_axis("w", "s")
 	character_direction = character_direction.normalized()
 	
-	#flip
-	
 	if character_direction.x > 0: %Sprite.flip_h = false
 	elif character_direction.x < 0: %Sprite.flip_h = true
 	

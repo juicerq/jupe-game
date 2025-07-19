@@ -9,9 +9,9 @@ func _ready() -> void:
 	
 func _on_body_entered(body):
 	if body.is_in_group("Enemies"):
-		var body_health = body.get_node("Health")
+		var body_health = body.get_node("HealthComponent")
 		
-		if (not body_health): push_error("Enemy with no health logic")
+		if (not body_health): push_error("Enemy with no health component")
 		
 		body_health.take_damage(damage)
 		

@@ -11,10 +11,11 @@ func _ready():
 	current_health = max_health
 	
 	if not max_health or max_health == 0:
-		push_error("Need health in", get_parent().name)
+		push_error("No max_health set in ", get_parent().name)
 		
 func take_damage(amount: int):
 	current_health -= amount
+	print(get_parent().name, " got damaged for ", amount)
 	
 	if current_health <= 0:
 		died.emit()

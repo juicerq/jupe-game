@@ -42,3 +42,4 @@ func _on_fw_timer_timeout() -> void:
 	var enemy_direction = (closest_enemy.global_position - arrow.global_position).normalized()
 	
 	arrow.set_direction(enemy_direction)
+	arrow.damage = %StatsComponent.attack

@@ -183,12 +183,12 @@ unique_name_in_owner = true
 z_index = 1
 y_sort_enabled = true
 
-[node name="Enemy" parent="." groups=["Enemies"] instance=ExtResource("4_1lgw5")]
+[node name="Enemy" parent="." instance=ExtResource("4_1lgw5")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(29, 45)
 
-[node name="Enemy2" parent="." groups=["Enemies"] instance=ExtResource("4_1lgw5")]
+[node name="Enemy2" parent="." instance=ExtResource("4_1lgw5")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(0, 71)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://cklhpy5bnv642"]
+[gd_scene load_steps=11 format=4 uid="uid://cklhpy5bnv642"]
 
 [ext_resource type="Texture2D" uid="uid://c7ntbsq8en0f3" path="res://assets/Tilemap/tilemap_packed.png" id="1_d1c63"]
 [ext_resource type="Texture2D" uid="uid://dnsb7bqpl7cdn" path="res://assets/robinHood_ v1.1/weapons_.png" id="2_1lgw5"]
 [ext_resource type="PackedScene" uid="uid://cobe437juc2n7" path="res://scenes/Player.tscn" id="3_hlk0d"]
 [ext_resource type="Script" uid="uid://cafage6df4o14" path="res://scripts/player/PlayerCamera.gd" id="4_0uv0p"]
+[ext_resource type="PackedScene" uid="uid://bvhexletb3i7r" path="res://scenes/Enemy.tscn" id="4_1lgw5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rwgxs"]
 texture = ExtResource("1_d1c63")
@@ -181,6 +182,16 @@ tile_set = SubResource("TileSet_k0juu")
 unique_name_in_owner = true
 z_index = 1
 y_sort_enabled = true
+
+[node name="Enemy" parent="." groups=["Enemies"] instance=ExtResource("4_1lgw5")]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(29, 45)
+
+[node name="Enemy2" parent="." groups=["Enemies"] instance=ExtResource("4_1lgw5")]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(0, 71)
 
 [node name="Camera" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)

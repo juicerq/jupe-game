@@ -107,3 +107,9 @@ texture = SubResource("AtlasTexture_mfdas")
 [node name="FWTimer" type="Timer" parent="FloatingWeapon"]
 unique_name_in_owner = true
 autostart = true
+
+[node name="FWArrowSpawnPosition" type="Marker2D" parent="FloatingWeapon"]
+unique_name_in_owner = true
+position = Vector2(4, 0)
+
+[connection signal="timeout" from="FloatingWeapon/FWTimer" to="FloatingWeapon" method="_on_fw_timer_timeout"]

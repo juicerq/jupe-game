@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bp61pabkrauxs"]
+
+[ext_resource type="Script" uid="uid://c4lib2lo7ssgv" path="res://scripts/Arrow.gd" id="1_3pw4r"]
+[ext_resource type="Texture2D" uid="uid://dnsb7bqpl7cdn" path="res://assets/robinHood_ v1.1/weapons_.png" id="1_4yf74"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhgny"]
+atlas = ExtResource("1_4yf74")
+region = Rect2(3.52544, 0, 5.20253, 24.4039)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3pw4r"]
+size = Vector2(20, 4)
+
+[node name="Arrow" type="CharacterBody2D"]
+z_index = 99
+y_sort_enabled = true
+script = ExtResource("1_3pw4r")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+rotation = -1.5708
+scale = Vector2(0.7, 0.7)
+texture = SubResource("AtlasTexture_qhgny")
+
+[node name="ArrowArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ArrowArea"]
+shape = SubResource("RectangleShape2D_3pw4r")

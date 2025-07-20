@@ -14,6 +14,8 @@ func _ready():
 	current_health = %StatsComponent.max_health
 
 func take_damage(amount: int):
+	if is_dead: return
+	
 	current_health -= amount
 	print(get_parent().name, " got damaged for ", amount)
 	

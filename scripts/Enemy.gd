@@ -28,3 +28,7 @@ func _physics_process(delta: float) -> void:
 	velocity = direction * speed
 	
 	move_and_slide()
+
+
+func _on_health_component_died() -> void:
+	remove_from_group("Enemies")

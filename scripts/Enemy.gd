@@ -15,6 +15,8 @@ func _on_body_entered(body):
 	
 
 func _physics_process(delta: float) -> void:
+	if %HealthComponent.is_dead: return
+	
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("Player")
 	
 	if not player:

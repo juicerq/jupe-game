@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var enemy_direction: Vector2
-var speed = 200
+var speed = 500
 var damage = 10
 
 func _ready() -> void:

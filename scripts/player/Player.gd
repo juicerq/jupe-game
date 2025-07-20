@@ -4,6 +4,8 @@ extends CharacterBody2D
 var character_direction: Vector2
 
 func _physics_process(delta):
+	if %HealthComponent.is_dead: return
+	
 	character_direction.x = Input.get_axis("a", "d")
 	character_direction.y = Input.get_axis("w", "s")
 	character_direction = character_direction.normalized()

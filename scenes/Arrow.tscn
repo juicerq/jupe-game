@@ -5,22 +5,22 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhgny"]
 atlas = ExtResource("1_4yf74")
-region = Rect2(3.52544, 0, 5.20253, 24.4039)
+region = Rect2(51.3374, 4.52836, 5.58391, 14.9649)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3pw4r"]
-size = Vector2(20, 4)
+size = Vector2(6, 12)
 
 [node name="Arrow" type="CharacterBody2D"]
-z_index = 99
+z_index = 2
 y_sort_enabled = true
 script = ExtResource("1_3pw4r")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-scale = Vector2(0.6, 0.6)
+scale = Vector2(0.75, 0.75)
 texture = SubResource("AtlasTexture_qhgny")
 
 [node name="ArrowArea" type="Area2D" parent="."]
 unique_name_in_owner = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ArrowArea"]
+[node name="Collision" type="CollisionShape2D" parent="ArrowArea"]
 shape = SubResource("RectangleShape2D_3pw4r")

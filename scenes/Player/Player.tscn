@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://cobe437juc2n7"]
+[gd_scene load_steps=23 format=3 uid="uid://cobe437juc2n7"]
 
-[ext_resource type="Script" uid="uid://dou4jvx31e4vr" path="res://scripts/player/Player.gd" id="1_g2brh"]
+[ext_resource type="Script" uid="uid://dou4jvx31e4vr" path="res://scenes/Player/Scripts/Player.gd" id="1_g2brh"]
 [ext_resource type="Script" uid="uid://dqp0iw4nkxyn4" path="res://scripts/StatsComponent.gd" id="2_70d11"]
+[ext_resource type="Script" uid="uid://dlnv0wjvxdpxo" path="res://scripts/LevelComponent.gd" id="2_cw2d6"]
 [ext_resource type="Texture2D" uid="uid://drwlrmy641yuw" path="res://assets/robinHood_ v1.1/robinHood_.png" id="2_g2brh"]
 [ext_resource type="Script" uid="uid://v5q16ak0mw7r" path="res://scripts/HealthComponent.gd" id="2_qu4a1"]
-[ext_resource type="Script" uid="uid://bni07m8mxcym6" path="res://scripts/player/PlayerFloatingWeapon.gd" id="3_4vejd"]
+[ext_resource type="Script" uid="uid://bni07m8mxcym6" path="res://scenes/Weapons/Bow/Scripts/Bow.gd" id="3_4vejd"]
 [ext_resource type="Texture2D" uid="uid://dnsb7bqpl7cdn" path="res://assets/robinHood_ v1.1/weapons_.png" id="3_dn4c7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_70d11"]
@@ -72,7 +73,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"die",
-"speed": 5.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -116,38 +117,48 @@ size = Vector2(12, 6)
 atlas = ExtResource("3_dn4c7")
 region = Rect2(15.3141, 2.2379, 7.91379, 19.9823)
 
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("level_manager", "stats_manager") groups=["Player"]]
 script = ExtResource("1_g2brh")
+level_manager = NodePath("LevelComponent")
+stats_manager = NodePath("StatsComponent")
 
-[node name="StatsComponent" type="Node" parent="."]
+[node name="LevelComponent" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_cw2d6")
+
+[node name="StatsComponent" type="Node" parent="." node_paths=PackedStringArray("Level")]
 unique_name_in_owner = true
 script = ExtResource("2_70d11")
-max_health = 50
 attack = 10
-critical_chance = 10.0
+critical_chance = 20.0
+critical_damage = 50.0
+defense = 10
+Level = NodePath("../LevelComponent")
 metadata/_custom_type_script = "uid://dqp0iw4nkxyn4"
 
-[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("body")]
+[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("Stats", "Sprite", "Collision")]
 unique_name_in_owner = true
 script = ExtResource("2_qu4a1")
-body = NodePath("..")
+max_health = 50
+Stats = NodePath("../StatsComponent")
+Sprite = NodePath("../Sprite")
+Collision = NodePath("../Collision")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_8nwgm")
-animation = &"die"
+animation = &"walk"
 autoplay = "idle"
-frame = 3
-frame_progress = 1.0
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_g2brh")
 
-[node name="FloatingWeapon" type="Node2D" parent="." node_paths=PackedStringArray("player")]
+[node name="FloatingWeapon" type="Node2D" parent="." node_paths=PackedStringArray("player", "stats")]
 script = ExtResource("3_4vejd")
 player = NodePath("..")
+stats = NodePath("../StatsComponent")
 
 [node name="FWSprite" type="Sprite2D" parent="FloatingWeapon"]
 unique_name_in_owner = true

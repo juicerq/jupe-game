@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://dlfyrafapbr0"]
+
+[ext_resource type="Script" uid="uid://h60xil7o80kf" path="res://scenes/Player/Experience/Scripts/Experience.gd" id="1_1a78g"]
+[ext_resource type="Texture2D" uid="uid://88ora0omcj6h" path="res://assets/All.png" id="2_wjxtv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iudx8"]
+size = Vector2(76, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4gcu"]
+atlas = ExtResource("2_wjxtv")
+region = Rect2(0, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iird6"]
+atlas = ExtResource("2_wjxtv")
+region = Rect2(16, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22ttq"]
+atlas = ExtResource("2_wjxtv")
+region = Rect2(32, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ysnem"]
+atlas = ExtResource("2_wjxtv")
+region = Rect2(48, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_obd0o"]
+atlas = ExtResource("2_wjxtv")
+region = Rect2(64, 112, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lcc7a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4gcu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iird6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22ttq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ysnem")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_obd0o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2xdin"]
+size = Vector2(20, 16)
+
+[node name="Experience" type="Node2D" node_paths=PackedStringArray("exp_area", "collect_area")]
+z_index = 1
+y_sort_enabled = true
+script = ExtResource("1_1a78g")
+exp_area = NodePath("AttractionArea")
+collect_area = NodePath("CollectArea")
+
+[node name="AttractionArea" type="Area2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="AttractionArea"]
+shape = SubResource("RectangleShape2D_iudx8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lcc7a")
+autoplay = "default"
+frame_progress = 0.964946
+
+[node name="CollectArea" type="Area2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="CollectArea"]
+shape = SubResource("RectangleShape2D_2xdin")

@@ -1,13 +1,13 @@
 [gd_scene load_steps=11 format=4 uid="uid://cklhpy5bnv642"]
 
-[ext_resource type="Texture2D" uid="uid://c7ntbsq8en0f3" path="res://assets/Tilemap/tilemap_packed.png" id="1_d1c63"]
-[ext_resource type="Texture2D" uid="uid://dnsb7bqpl7cdn" path="res://assets/robinHood_ v1.1/weapons_.png" id="2_1lgw5"]
-[ext_resource type="PackedScene" uid="uid://cobe437juc2n7" path="res://scenes/Player.tscn" id="3_hlk0d"]
-[ext_resource type="Script" uid="uid://cafage6df4o14" path="res://scripts/player/PlayerCamera.gd" id="4_0uv0p"]
-[ext_resource type="PackedScene" uid="uid://bvhexletb3i7r" path="res://scenes/Enemy.tscn" id="4_1lgw5"]
+[ext_resource type="Texture2D" uid="uid://c7ntbsq8en0f3" path="res://assets/Tilemap/tilemap_packed.png" id="1_fngvn"]
+[ext_resource type="Script" uid="uid://bvd7vedcmiph7" path="res://scenes/World/Scripts/world.gd" id="1_hkgio"]
+[ext_resource type="Texture2D" uid="uid://dnsb7bqpl7cdn" path="res://assets/robinHood_ v1.1/weapons_.png" id="2_hkgio"]
+[ext_resource type="PackedScene" uid="uid://cobe437juc2n7" path="res://scenes/Player/Player.tscn" id="3_kurpr"]
+[ext_resource type="Script" uid="uid://cafage6df4o14" path="res://scenes/World/Scripts/PlayerCamera.gd" id="5_ictkp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rwgxs"]
-texture = ExtResource("1_d1c63")
+texture = ExtResource("1_fngvn")
 0:0/0 = 0
 0:1/0 = 0
 0:2/0 = 0
@@ -150,14 +150,14 @@ physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_rwgxs")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4wyf3"]
-texture = ExtResource("1_d1c63")
+texture = ExtResource("1_fngvn")
 3:0/size_in_atlas = Vector2i(1, 2)
 3:0/0 = 0
 3:0/0/texture_origin = Vector2i(0, 10)
 3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 8, -0.179857, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_71j4m"]
-texture = ExtResource("2_1lgw5")
+texture = ExtResource("2_hkgio")
 
 [sub_resource type="TileSet" id="TileSet_k0juu"]
 physics_layer_0/collision_layer = 1
@@ -166,6 +166,7 @@ sources/1 = SubResource("TileSetAtlasSource_71j4m")
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_hkgio")
 
 [node name="Ground" type="TileMapLayer" parent="."]
 y_sort_enabled = true
@@ -179,21 +180,18 @@ tile_map_data = PackedByteArray("AAD+////AAADAAAAAAABAAAAAAADAAAAAAD+/wAAAAADAAA
 enabled = false
 tile_set = SubResource("TileSet_k0juu")
 
-[node name="Player" parent="." instance=ExtResource("3_hlk0d")]
+[node name="Player" parent="." instance=ExtResource("3_kurpr")]
 unique_name_in_owner = true
 z_index = 1
 y_sort_enabled = true
 
-[node name="Enemy" parent="." instance=ExtResource("4_1lgw5")]
-z_index = 1
-y_sort_enabled = true
-position = Vector2(29, 45)
-
-[node name="Enemy2" parent="." instance=ExtResource("4_1lgw5")]
-z_index = 1
-y_sort_enabled = true
-position = Vector2(0, 71)
-
-[node name="Camera" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="." node_paths=PackedStringArray("body_to_follow")]
 zoom = Vector2(3, 3)
-script = ExtResource("4_0uv0p")
+script = ExtResource("5_ictkp")
+body_to_follow = NodePath("../Player")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

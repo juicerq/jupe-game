@@ -1,23 +1,23 @@
 extends Node
 class_name HealthComponent
 
+@export var max_health: int
+@export var Stats: StatsComponent
+@export var Sprite: AnimatedSprite2D
+@export var Collision: CollisionShape2D
+
 var current_health
 var is_dead: bool = false
-@export var body = CharacterBody2D
 
 signal died
 
 func _ready():
-	if not %StatsComponent.max_health or %StatsComponent.max_health == 0:
-		push_error("No max_health set in ", get_parent().name)
-	
-	current_health = %StatsComponent.max_health
+	current_health = max_health + (max_health * 100) / 100
 
 func take_damage(amount: int):
-	if is_dead: return
-	
-	current_health -= amount
-	print(get_parent().name, " got damaged for ", amount)
+	print(get_parent().name, " HP before damage: ", current_health)
+	current_health -= (amount - (amount * Stats.defense / 100))
+	print(get_parent().name, " got damaged for ", amount, " and the HP now is ", current_health)
 	
 	if current_health <= 0:
 		die()
@@ -28,7 +28,8 @@ func _on_animation_finished():
 	get_parent().queue_free()
 	
 func die():
-		is_dead = true
-		died.emit()
-		%Sprite.play("die")
-		%Sprite.animation_finished.connect(_on_animation_finished)
+	died.emit()
+	Collision.disabled = true
+	Sprite.play("die")
+	is_dead = true
+	Sprite.animation_finished.connect(_on_animation_finished)

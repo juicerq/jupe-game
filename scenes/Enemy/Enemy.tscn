@@ -1,6 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://bvhexletb3i7r"]
+[gd_scene load_steps=25 format=3 uid="uid://bvhexletb3i7r"]
 
-[ext_resource type="Script" uid="uid://bb6iv0v1hws4y" path="res://scripts/Enemy.gd" id="1_55jtl"]
+[ext_resource type="Script" uid="uid://bb6iv0v1hws4y" path="res://scenes/Enemy/Scripts/Enemy.gd" id="1_55jtl"]
+[ext_resource type="Script" uid="uid://dlnv0wjvxdpxo" path="res://scripts/LevelComponent.gd" id="2_5wwv6"]
 [ext_resource type="Script" uid="uid://dqp0iw4nkxyn4" path="res://scripts/StatsComponent.gd" id="2_ft8do"]
 [ext_resource type="Texture2D" uid="uid://ctpn601ys4uel" path="res://assets/taigaSprites_ [version 1.0]/troll_.png" id="2_mpr68"]
 [ext_resource type="Script" uid="uid://v5q16ak0mw7r" path="res://scripts/HealthComponent.gd" id="3_mpr68"]
@@ -103,7 +104,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -141,35 +142,48 @@ size = Vector2(12, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mpr68"]
 size = Vector2(14, 8)
 
-[node name="Enemy" type="CharacterBody2D" groups=["Enemies"]]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("DamageArea", "HealthComponent", "Sprite", "StatsComponent") groups=["Enemies"]]
+z_index = 1
+y_sort_enabled = true
 script = ExtResource("1_55jtl")
+DamageArea = NodePath("DamageArea")
+HealthComponent = NodePath("HealthComponent")
+Sprite = NodePath("Sprite")
+StatsComponent = NodePath("StatsComponent")
 
-[node name="StatsComponent" type="Node" parent="."]
-unique_name_in_owner = true
+[node name="LevelComponent" type="Node" parent="."]
+script = ExtResource("2_5wwv6")
+current_level = 10
+metadata/_custom_type_script = "uid://dlnv0wjvxdpxo"
+
+[node name="StatsComponent" type="Node" parent="." node_paths=PackedStringArray("Level")]
 script = ExtResource("2_ft8do")
-max_health = 20
 attack = 10
+critical_chance = 5.0
+critical_damage = 50.0
+defense = 10
+Level = NodePath("../LevelComponent")
 metadata/_custom_type_script = "uid://dqp0iw4nkxyn4"
 
-[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("body")]
-unique_name_in_owner = true
+[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("Stats", "Sprite", "Collision")]
 script = ExtResource("3_mpr68")
-body = NodePath("..")
+max_health = 20
+Stats = NodePath("../StatsComponent")
+Sprite = NodePath("../Sprite")
+Collision = NodePath("../Collision")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
-unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_1i2q2")
-animation = &"idle"
+animation = &"walk"
 autoplay = "idle"
 
-[node name="EnemyCollision" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_ft8do")
 
-[node name="EnemyArea" type="Area2D" parent="."]
-unique_name_in_owner = true
+[node name="DamageArea" type="Area2D" parent="."]
 
-[node name="EnemyAreaCollision" type="CollisionShape2D" parent="EnemyArea"]
+[node name="Collision" type="CollisionShape2D" parent="DamageArea"]
 position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_mpr68")
 

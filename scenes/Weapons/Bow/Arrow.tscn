@@ -1,10 +1,10 @@
 [gd_scene load_steps=5 format=3 uid="uid://bp61pabkrauxs"]
 
-[ext_resource type="Script" uid="uid://c4lib2lo7ssgv" path="res://scripts/Arrow.gd" id="1_3pw4r"]
-[ext_resource type="Texture2D" uid="uid://dnsb7bqpl7cdn" path="res://assets/robinHood_ v1.1/weapons_.png" id="1_4yf74"]
+[ext_resource type="Script" uid="uid://c4lib2lo7ssgv" path="res://scenes/Weapons/Bow/Scripts/Arrow.gd" id="1_3m0ny"]
+[ext_resource type="Texture2D" uid="uid://dnsb7bqpl7cdn" path="res://assets/robinHood_ v1.1/weapons_.png" id="2_kbx78"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhgny"]
-atlas = ExtResource("1_4yf74")
+atlas = ExtResource("2_kbx78")
 region = Rect2(51.3374, 4.52836, 5.58391, 14.9649)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3pw4r"]
@@ -13,7 +13,7 @@ size = Vector2(6, 12)
 [node name="Arrow" type="CharacterBody2D"]
 z_index = 2
 y_sort_enabled = true
-script = ExtResource("1_3pw4r")
+script = ExtResource("1_3m0ny")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 scale = Vector2(0.75, 0.75)

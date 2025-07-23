@@ -1,7 +1,8 @@
 extends Node2D
 
-var arrow_scene = preload("res://scenes/Arrow.tscn")
-@export var player: CharacterBody2D
+var arrow_scene = preload("res://scenes/Weapons/Bow/Arrow.tscn")
+@export var player: Player
+@export var stats: StatsComponent
 
 var radius = 15
 
@@ -14,28 +15,17 @@ func _physics_process(delta: float) -> void:
 	
 	if position.x > 0: %FWSprite.flip_h = false
 	else: %FWSprite.flip_h = true
-
-func check_enemy_alive(enemy: CharacterBody2D):
-	if not enemy: return false
 	
-	var enemy_health = enemy.get_node("HealthComponent")
+func get_closest_enemy() -> Enemy:
+	var alive_enemies = get_tree().get_nodes_in_group("Enemies")
 	
-	print(enemy_health.is_dead)
-	
-	return not enemy_health.is_dead
-	
-func get_closest_enemy() -> CharacterBody2D:
-	var enemies = get_tree().get_nodes_in_group("Enemies")
-	
-	var alive_enemies = enemies.filter(check_enemy_alive)
-	
-	var closest_enemy: CharacterBody2D
+	var closest_enemy: Enemy
 	
 	if not alive_enemies.size():
 		closest_enemy = null
 		return
 		
-	for enemy: CharacterBody2D in alive_enemies:
+	for enemy: Enemy in alive_enemies:
 		if not closest_enemy:
 			closest_enemy = enemy
 			
@@ -66,16 +56,16 @@ func _on_fw_timer_timeout() -> void:
 	arrow.damage = get_damage()
 	
 func get_damage():
-	var total_attack = %StatsComponent.attack
+	var total_attack = stats.attack
 	
 	var random_number = randf()
 	
-	var normalized_chance_to_crit: float = %StatsComponent.critical_chance / 100
+	var normalized_chance_to_crit: float = stats.critical_chance / 100
 	
 	var should_crit = random_number < normalized_chance_to_crit
 	
 	if should_crit:
-		total_attack = (%StatsComponent.attack * (%StatsComponent.critical_damage_multiplier * 100) / 100)
+		total_attack += (stats.attack * stats.critical_damage) / 100
 		
 	return total_attack
 	

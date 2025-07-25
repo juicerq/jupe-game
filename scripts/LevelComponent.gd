@@ -18,7 +18,8 @@ var stats_per_level: Dictionary = {
 	"health": 5,
 	"critical_chance": 5,
 	"critical_damage": 5,
-	"defense": 5
+	"defense": 5,
+	"max_health": 10
 }
 
 func add_experience(amount: int) -> bool:

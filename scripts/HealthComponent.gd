@@ -1,7 +1,6 @@
 extends Node
 class_name HealthComponent
 
-@export var max_health: int
 @export var Stats: StatsComponent
 @export var Sprite: AnimatedSprite2D
 @export var Collision: CollisionShape2D
@@ -12,7 +11,7 @@ var is_dead: bool = false
 signal died
 
 func _ready():
-	current_health = max_health + (max_health * 100) / 100
+	current_health = Stats.max_health
 
 func take_damage(amount: int):
 	print(get_parent().name, " HP before damage: ", current_health)

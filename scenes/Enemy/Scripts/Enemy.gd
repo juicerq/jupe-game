@@ -16,7 +16,7 @@ func _on_body_entered(body):
 	if body.is_in_group("Player"):
 		var player_health = body.get_node("HealthComponent")
 		
-		player_health.take_damage(%StatsComponent.attack)
+		player_health.take_damage(StatsComponent.attack)
 	
 
 func _physics_process(delta: float) -> void:

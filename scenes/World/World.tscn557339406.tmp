@@ -197,6 +197,7 @@ script = ExtResource("5_ictkp")
 body_to_follow = NodePath("../Player")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
 autostart = true
 
-[connection signal="timeout" from="Timer" to="EnemyWave" method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

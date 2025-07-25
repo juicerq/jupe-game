@@ -150,14 +150,15 @@ DamageArea = NodePath("DamageArea")
 HealthComponent = NodePath("HealthComponent")
 Sprite = NodePath("Sprite")
 StatsComponent = NodePath("StatsComponent")
+speed = 30
 
 [node name="LevelComponent" type="Node" parent="."]
 script = ExtResource("2_5wwv6")
-current_level = 10
 metadata/_custom_type_script = "uid://dlnv0wjvxdpxo"
 
 [node name="StatsComponent" type="Node" parent="." node_paths=PackedStringArray("Level")]
 script = ExtResource("2_ft8do")
+max_health = 30
 attack = 10
 critical_chance = 5.0
 critical_damage = 50.0
@@ -167,7 +168,6 @@ metadata/_custom_type_script = "uid://dqp0iw4nkxyn4"
 
 [node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("Stats", "Sprite", "Collision")]
 script = ExtResource("3_mpr68")
-max_health = 20
 Stats = NodePath("../StatsComponent")
 Sprite = NodePath("../Sprite")
 Collision = NodePath("../Collision")

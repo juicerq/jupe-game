@@ -3,6 +3,7 @@ extends Node2D
 var arrow_scene = preload("res://scenes/Weapons/Bow/Arrow.tscn")
 @export var player: Player
 @export var stats: StatsComponent
+@export var Sprite: AnimatedSprite2D
 
 var radius = 15
 
@@ -13,30 +14,14 @@ func _physics_process(delta: float) -> void:
 	
 	position = position.lerp(direction * radius, 10 * delta)
 	
-	if position.x > 0: %FWSprite.flip_h = false
-	else: %FWSprite.flip_h = true
-	
-#func get_closest_enemy() -> Enemy:
-	#var alive_enemies = get_tree().get_nodes_in_group("Enemies")
-	#
-	#var closest_enemy: Enemy
-	#
-	#if not alive_enemies.size():
-		#closest_enemy = null
-		#return
-		#
-	#for enemy: Enemy in alive_enemies:
-		#if not closest_enemy:
-			#closest_enemy = enemy
-			#
-		#var distance = enemy.global_position.distance_to(%FWArrowSpawnPosition.global_position)
-		#
-		#if distance < (closest_enemy.global_position.distance_to(%FWArrowSpawnPosition.global_position)) :
-			#closest_enemy = enemy
-	#
-	#return closest_enemy
+	if position.x > 0: Sprite.flip_h = false
+	else: Sprite.flip_h = true
 
 func _on_fw_timer_timeout() -> void:
+	Sprite.play("attack")
+	
+	await Sprite.animation_finished
+	
 	var arrow: Arrow = arrow_scene.instantiate()
 	
 	get_tree().current_scene.add_child(arrow)
@@ -47,9 +32,14 @@ func _on_fw_timer_timeout() -> void:
 	
 	var arrow_direction = (mouse_pos - arrow.global_position).normalized()
 	
-	arrow.direction = arrow_direction
 	arrow.damage = get_damage()
 	
+	arrow.direction = arrow_direction
+	%FWTimer.start()
+	
+	print("finished attack")
+	
+
 func get_damage():
 	var total_attack = stats.attack
 	

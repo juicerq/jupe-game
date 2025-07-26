@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://188c4t5l81e3"]
+
+[ext_resource type="Script" uid="uid://bni07m8mxcym6" path="res://scenes/Weapons/Bow/Scripts/Bow.gd" id="1_3327r"]
+
+[node name="FloatingWeapon" type="Node2D"]
+script = ExtResource("1_3327r")
+
+[node name="FWTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+autostart = true
+
+[node name="FWArrowSpawnPosition" type="Marker2D" parent="."]
+unique_name_in_owner = true
+
+[connection signal="timeout" from="FWTimer" to="." method="_on_fw_timer_timeout"]

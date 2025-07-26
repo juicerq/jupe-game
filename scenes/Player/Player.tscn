@@ -1,12 +1,12 @@
-[gd_scene load_steps=23 format=3 uid="uid://cobe437juc2n7"]
+[gd_scene load_steps=26 format=3 uid="uid://cobe437juc2n7"]
 
 [ext_resource type="Script" uid="uid://dou4jvx31e4vr" path="res://scenes/Player/Scripts/Player.gd" id="1_g2brh"]
 [ext_resource type="Script" uid="uid://dqp0iw4nkxyn4" path="res://scripts/StatsComponent.gd" id="2_70d11"]
 [ext_resource type="Script" uid="uid://dlnv0wjvxdpxo" path="res://scripts/LevelComponent.gd" id="2_cw2d6"]
 [ext_resource type="Texture2D" uid="uid://drwlrmy641yuw" path="res://assets/robinHood_ v1.1/robinHood_.png" id="2_g2brh"]
 [ext_resource type="Script" uid="uid://v5q16ak0mw7r" path="res://scripts/HealthComponent.gd" id="2_qu4a1"]
-[ext_resource type="Script" uid="uid://bni07m8mxcym6" path="res://scenes/Weapons/Bow/Scripts/Bow.gd" id="3_4vejd"]
 [ext_resource type="Texture2D" uid="uid://dnsb7bqpl7cdn" path="res://assets/robinHood_ v1.1/weapons_.png" id="3_dn4c7"]
+[ext_resource type="PackedScene" uid="uid://188c4t5l81e3" path="res://scenes/Weapons/Base.tscn" id="6_socpp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_70d11"]
 atlas = ExtResource("2_g2brh")
@@ -113,11 +113,40 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2brh"]
 size = Vector2(14, 22)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mfdas"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxc31"]
 atlas = ExtResource("3_dn4c7")
-region = Rect2(15.3141, 2.2379, 7.91379, 19.9823)
+region = Rect2(12, 0, 12, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_puxyr"]
+atlas = ExtResource("3_dn4c7")
+region = Rect2(24, 0, 12, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmokv"]
+atlas = ExtResource("3_dn4c7")
+region = Rect2(36, 0, 12, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tl8lu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxc31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_puxyr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mmokv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxc31")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 8.0
+}]
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("level_manager", "stats_manager") groups=["Player"]]
+z_index = 2
 script = ExtResource("1_g2brh")
 level_manager = NodePath("LevelComponent")
 stats_manager = NodePath("StatsComponent")
@@ -155,23 +184,13 @@ autoplay = "idle"
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_g2brh")
 
-[node name="FloatingWeapon" type="Node2D" parent="." node_paths=PackedStringArray("player", "stats")]
-script = ExtResource("3_4vejd")
+[node name="FloatingWeapon" parent="." node_paths=PackedStringArray("player", "stats", "Sprite") instance=ExtResource("6_socpp")]
 player = NodePath("..")
 stats = NodePath("../StatsComponent")
+Sprite = NodePath("BowSprite")
 
-[node name="FWSprite" type="Sprite2D" parent="FloatingWeapon"]
-unique_name_in_owner = true
-scale = Vector2(0.85, 0.85)
-texture = SubResource("AtlasTexture_mfdas")
-
-[node name="FWTimer" type="Timer" parent="FloatingWeapon"]
-unique_name_in_owner = true
-autostart = true
-
-[node name="FWArrowSpawnPosition" type="Marker2D" parent="FloatingWeapon"]
-unique_name_in_owner = true
-position = Vector2(4, 0)
+[node name="BowSprite" type="AnimatedSprite2D" parent="FloatingWeapon"]
+sprite_frames = SubResource("SpriteFrames_tl8lu")
+animation = &"attack"
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
-[connection signal="timeout" from="FloatingWeapon/FWTimer" to="FloatingWeapon" method="_on_fw_timer_timeout"]

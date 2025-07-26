@@ -15,7 +15,7 @@ func _ready():
 
 func take_damage(amount: int):
 	var total_damage = (amount - (amount * Stats.defense / 100))
-	print(get_parent().name, " DAMAGED! HP before: ", current_health, ".", " after: ", current_health - total_damage)
+	print(get_parent().name, " DAMAGED! HP before: ", current_health, "-", " after: ", current_health - total_damage)
 	current_health -= total_damage
 	
 	if current_health <= 0:

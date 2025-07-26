@@ -111,7 +111,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2brh"]
-size = Vector2(12, 6)
+size = Vector2(14, 22)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mfdas"]
 atlas = ExtResource("3_dn4c7")
@@ -152,7 +152,7 @@ animation = &"die"
 autoplay = "idle"
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 10)
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_g2brh")
 
 [node name="FloatingWeapon" type="Node2D" parent="." node_paths=PackedStringArray("player", "stats")]
@@ -173,4 +173,5 @@ autostart = true
 unique_name_in_owner = true
 position = Vector2(4, 0)
 
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="timeout" from="FloatingWeapon/FWTimer" to="FloatingWeapon" method="_on_fw_timer_timeout"]

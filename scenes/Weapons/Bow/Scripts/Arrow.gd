@@ -1,6 +1,7 @@
 extends CharacterBody2D
+class_name Arrow
 
-var enemy_direction: Vector2
+var direction: Vector2
 var speed = 300
 var damage = 10
 
@@ -17,12 +18,6 @@ func _on_body_entered(body):
 		
 		queue_free()
 
-func set_direction(direction: Vector2):
-	if enemy_direction: return
-	
-	enemy_direction = direction
-
-func _physics_process(_delta: float) -> void:
-	velocity = enemy_direction * speed
-	rotation = enemy_direction.angle() + PI/2
-	move_and_slide()
+func _physics_process(delta: float) -> void:
+	rotation = direction.angle() + PI/2
+	move_and_collide(direction * speed * delta)

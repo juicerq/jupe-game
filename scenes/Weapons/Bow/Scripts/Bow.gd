@@ -16,43 +16,38 @@ func _physics_process(delta: float) -> void:
 	if position.x > 0: %FWSprite.flip_h = false
 	else: %FWSprite.flip_h = true
 	
-func get_closest_enemy() -> Enemy:
-	var alive_enemies = get_tree().get_nodes_in_group("Enemies")
-	
-	var closest_enemy: Enemy
-	
-	if not alive_enemies.size():
-		closest_enemy = null
-		return
-		
-	for enemy: Enemy in alive_enemies:
-		if not closest_enemy:
-			closest_enemy = enemy
-			
-		var distance = enemy.global_position.distance_to(%FWArrowSpawnPosition.global_position)
-		
-		if distance < (closest_enemy.global_position.distance_to(%FWArrowSpawnPosition.global_position)) :
-			closest_enemy = enemy
-	
-	return closest_enemy
+#func get_closest_enemy() -> Enemy:
+	#var alive_enemies = get_tree().get_nodes_in_group("Enemies")
+	#
+	#var closest_enemy: Enemy
+	#
+	#if not alive_enemies.size():
+		#closest_enemy = null
+		#return
+		#
+	#for enemy: Enemy in alive_enemies:
+		#if not closest_enemy:
+			#closest_enemy = enemy
+			#
+		#var distance = enemy.global_position.distance_to(%FWArrowSpawnPosition.global_position)
+		#
+		#if distance < (closest_enemy.global_position.distance_to(%FWArrowSpawnPosition.global_position)) :
+			#closest_enemy = enemy
+	#
+	#return closest_enemy
 
 func _on_fw_timer_timeout() -> void:
-	var closest_enemy = get_closest_enemy()
-	
-	if not closest_enemy: return
-	
-	var arrow = arrow_scene.instantiate()
+	var arrow: Arrow = arrow_scene.instantiate()
 	
 	get_tree().current_scene.add_child(arrow)
 	
 	arrow.global_position = %FWArrowSpawnPosition.global_position
 	
-	var feet_enemy_pos = (closest_enemy.global_position + Vector2(0, 8))
+	var mouse_pos = get_global_mouse_position()
 	
-	var enemy_direction = (feet_enemy_pos - arrow.global_position).normalized()
+	var arrow_direction = (mouse_pos - arrow.global_position).normalized()
 	
-	arrow.set_direction(enemy_direction)
-	
+	arrow.direction = arrow_direction
 	arrow.damage = get_damage()
 	
 func get_damage():

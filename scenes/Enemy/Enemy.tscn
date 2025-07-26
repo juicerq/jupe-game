@@ -137,10 +137,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ft8do"]
-size = Vector2(12, 6)
+size = Vector2(12, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mpr68"]
-size = Vector2(14, 8)
+size = Vector2(14, 17)
 
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("DamageArea", "HealthComponent", "Sprite", "StatsComponent") groups=["Enemies"]]
 z_index = 1
@@ -178,13 +178,13 @@ animation = &"walk"
 autoplay = "idle"
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 9)
+position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_ft8do")
 
 [node name="DamageArea" type="Area2D" parent="."]
 
 [node name="Collision" type="CollisionShape2D" parent="DamageArea"]
-position = Vector2(0, 9)
+position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_mpr68")
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]

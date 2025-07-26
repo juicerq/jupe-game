@@ -13,11 +13,10 @@ func _ready() -> void:
 	DamageArea.body_entered.connect(_on_body_entered)
 	
 func _on_body_entered(body):
-	if body.is_in_group("Player"):
+	if body.is_in_group("Player") and not HealthComponent.is_dead:
 		var player_health = body.get_node("HealthComponent")
 		
 		player_health.take_damage(StatsComponent.attack)
-	
 
 func _physics_process(delta: float) -> void:
 	if HealthComponent.is_dead: return
@@ -37,7 +36,7 @@ func _physics_process(delta: float) -> void:
 			closest_player = player
 	
 	if not closest_player:
-		push_error("No player found in enemy movement")
+		Sprite.animation = "idle"
 		return
 		
 	var direction = (closest_player.global_position - global_position).normalized()
@@ -52,8 +51,6 @@ func _physics_process(delta: float) -> void:
 		move_and_collide(Vector2.ZERO)
 		Sprite.animation = "idle"
 	
-
-
 func _on_health_component_died() -> void:
 	remove_from_group("Enemies")
 	var spawned_experience = exp_scene.instantiate()

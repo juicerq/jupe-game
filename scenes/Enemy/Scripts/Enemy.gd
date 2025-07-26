@@ -46,13 +46,12 @@ func _physics_process(delta: float) -> void:
 	elif direction.x < 0: Sprite.flip_h = true
 		
 	if direction:
-		velocity = direction * speed
+		move_and_collide(direction * speed * delta, false, 1)
 		Sprite.animation = "walk"
 	else:
-		velocity = Vector2.ZERO
+		move_and_collide(Vector2.ZERO)
 		Sprite.animation = "idle"
 	
-	move_and_slide()
 
 
 func _on_health_component_died() -> void:

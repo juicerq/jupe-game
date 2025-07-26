@@ -1,6 +1,16 @@
 extends Node2D
 class_name World
 
+func check_player_dead(player: Player):
+	return not player.health_manager.is_dead and not player.sprite_manager.is_playing()
+
 func _physics_process(delta: float) -> void:
-	#print("mouse pos: ", get_global_mouse_position())
+	var all_players = get_tree().get_nodes_in_group("Player") as Array[Player]
+	
+	var is_all_dead = all_players.all(check_player_dead)
+	
+	if not is_all_dead: return
+		
+	get_tree().paused = true
+	
 	return

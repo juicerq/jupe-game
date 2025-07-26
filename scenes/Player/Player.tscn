@@ -145,11 +145,13 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("level_manager", "stats_manager") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("level_manager", "stats_manager", "health_manager", "sprite_manager") groups=["Player"]]
 z_index = 2
 script = ExtResource("1_g2brh")
 level_manager = NodePath("LevelComponent")
 stats_manager = NodePath("StatsComponent")
+health_manager = NodePath("HealthComponent")
+sprite_manager = NodePath("Sprite")
 
 [node name="LevelComponent" type="Node" parent="."]
 unique_name_in_owner = true

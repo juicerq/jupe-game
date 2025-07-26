@@ -28,7 +28,7 @@ func _on_animation_finished():
 	
 func die():
 	died.emit()
-	Collision.disabled = true
+	Collision.queue_free()
 	Sprite.play("die")
 	is_dead = true
 	Sprite.animation_finished.connect(_on_animation_finished)

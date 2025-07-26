@@ -2,11 +2,11 @@ extends Node
 class_name LevelComponent
 
 var ExperiencePerLevelNeeded: Dictionary[int, int] = {
-	1: 100,
-	2: 200,
-	3: 300,
-	4: 400,
-	5: 500
+	1: 200,
+	2: 300,
+	3: 400,
+	4: 500,
+	5: 600
 }
 
 @export var current_level: int = 1

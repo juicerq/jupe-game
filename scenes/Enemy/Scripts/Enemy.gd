@@ -23,17 +23,7 @@ func _physics_process(delta: float) -> void:
 	
 	var players: Array[Node] = get_tree().get_nodes_in_group("Player")
 	
-	var closest_player: CharacterBody2D 
-	
-	for player in players:
-		if not closest_player: closest_player = player
-		
-		if not player: pass
-		
-		var distance_to_player = global_position.distance_to(player.global_position)
-		
-		if distance_to_player < global_position.distance_to(closest_player.global_position):
-			closest_player = player
+	var closest_player = GlobalFunctions.get_closest_player(self)
 	
 	if not closest_player:
 		Sprite.animation = "idle"

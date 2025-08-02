@@ -22,34 +22,33 @@ var stats_per_level: Dictionary = {
 func update_max_experience():
 	if current_level == 1:
 		return
-		
+	
 	var new_max_experience = max_experience + ((max_experience * max_experience_increase_per_level / 100) * (current_level - 1))
 	
 	max_experience = new_max_experience
 	
 	return
+	
+func handle_level_up():
+	player.stats_manager.recalculate_all_stats()
+	update_max_experience()
 
-func add_experience(amount: float) -> bool:
+func add_experience(amount: float) -> void:
 	current_experience += amount
-	
-	print("[EXP] player gained exp: ", amount)
-	
-	print("[EXP] player needs to level up: ", max_experience)
 	
 	var should_level_up = current_experience >= max_experience
 	
+	print("[EXP] current_experience is ", current_experience, " and max is ", max_experience )
+	
 	if should_level_up:
 		var next_level = current_level + 1
-		print("player leveled up from: ", current_level, " to: ", next_level)
+		
+		print("[EXP]: player level up from ", current_level, " to ", next_level)
+		
 		current_level = next_level
+		current_experience = current_experience - max_experience
 		
-		update_max_experience()
-		
-		if (player):
-			player.player_gained_experience.emit(amount, max_experience)
-		return true
-	else:
-		if (player):
-			player.player_gained_experience.emit(amount, max_experience)
-
-	return false
+		handle_level_up()
+	
+	if (player):
+		player.player_gained_experience.emit(current_experience, max_experience)

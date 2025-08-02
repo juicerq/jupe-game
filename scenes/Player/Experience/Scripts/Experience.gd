@@ -18,10 +18,7 @@ func _on_collect_body_entered(body: Node2D):
 	if not body is Player: return
 	
 	if body is Player:
-		var leveled_up = body.level_manager.add_experience(experience_amount)
-		
-		if leveled_up:
-			body.stats_manager.recalculate_all_stats()
+		body.level_manager.add_experience(experience_amount)
 	
 	queue_free()
 

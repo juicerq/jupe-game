@@ -37,7 +37,7 @@ func _on_fw_timer_timeout() -> void:
 	arrow.direction = arrow_direction
 	%FWTimer.start()
 	
-	print("finished attack")
+	#print("finished attack")
 	
 
 func get_damage():

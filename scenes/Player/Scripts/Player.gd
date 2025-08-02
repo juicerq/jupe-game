@@ -9,6 +9,8 @@ class_name Player
 
 var character_direction: Vector2
 
+signal player_gained_experience(amount: float, max_experience)
+
 func _physics_process(delta):
 	if health_manager.is_dead: return
 	

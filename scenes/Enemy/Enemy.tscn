@@ -151,6 +151,7 @@ HealthComponent = NodePath("HealthComponent")
 Sprite = NodePath("Sprite")
 StatsComponent = NodePath("StatsComponent")
 speed = 30
+experience_drop = 20.0
 
 [node name="LevelComponent" type="Node" parent="."]
 script = ExtResource("2_5wwv6")

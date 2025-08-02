@@ -7,6 +7,8 @@ class_name Enemy
 @export var StatsComponent: StatsComponent
 
 @export var speed = 40
+@export var experience_drop: float
+
 var exp_scene = preload("res://scenes/Player/Experience/Experience.tscn")
 
 func _ready() -> void:
@@ -35,7 +37,8 @@ func _physics_process(delta: float) -> void:
 	elif direction.x < 0: Sprite.flip_h = true
 		
 	if direction:
-		move_and_collide(direction * speed * delta, false, 1)
+		velocity = direction * speed
+		move_and_collide(velocity * delta)
 		Sprite.animation = "walk"
 	else:
 		move_and_collide(Vector2.ZERO)
@@ -43,6 +46,7 @@ func _physics_process(delta: float) -> void:
 	
 func _on_health_component_died() -> void:
 	remove_from_group("Enemies")
-	var spawned_experience = exp_scene.instantiate()
+	var spawned_experience: Experience = exp_scene.instantiate()
 	get_tree().current_scene.add_child(spawned_experience)
+	spawned_experience.experience_amount = experience_drop
 	spawned_experience.global_position = global_position

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://88ora0omcj6h" path="res://assets/All.png" id="2_wjxtv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iudx8"]
-size = Vector2(76, 58)
+size = Vector2(37, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b4gcu"]
 atlas = ExtResource("2_wjxtv")
@@ -62,6 +62,7 @@ collect_area = NodePath("CollectArea")
 [node name="AttractionArea" type="Area2D" parent="."]
 
 [node name="Collision" type="CollisionShape2D" parent="AttractionArea"]
+position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_iudx8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

@@ -145,7 +145,7 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("level_manager", "stats_manager", "health_manager", "sprite_manager") groups=["Player"]]
+[node name="Archer" type="CharacterBody2D" node_paths=PackedStringArray("level_manager", "stats_manager", "health_manager", "sprite_manager") groups=["Player"]]
 z_index = 2
 script = ExtResource("1_g2brh")
 level_manager = NodePath("LevelComponent")
@@ -153,15 +153,16 @@ stats_manager = NodePath("StatsComponent")
 health_manager = NodePath("HealthComponent")
 sprite_manager = NodePath("Sprite")
 
-[node name="LevelComponent" type="Node" parent="."]
+[node name="LevelComponent" type="Node" parent="." node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
 script = ExtResource("2_cw2d6")
+player = NodePath("..")
 
 [node name="StatsComponent" type="Node" parent="." node_paths=PackedStringArray("Level")]
 unique_name_in_owner = true
 script = ExtResource("2_70d11")
 max_health = 50
-attack = 10
+attack = 100
 critical_chance = 20.0
 critical_damage = 50.0
 defense = 10

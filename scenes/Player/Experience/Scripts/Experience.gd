@@ -4,9 +4,8 @@ class_name Experience
 @export var exp_area: Area2D
 @export var collect_area: Area2D
 
-var experience_amount = 10 # mudar para 10?
+var experience_amount = 10
 
-# TODO: increase speed based on time pursuing the player
 var speed = 110
 var player: Player
 

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://jcufghd8s5pv"]
+
+[ext_resource type="Script" uid="uid://b7war4pun8bmc" path="res://scenes/Player/Experience/UI/progress_bar.gd" id="1_rmrbt"]
+
+[node name="ProgressBar" type="ProgressBar"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 27.0
+grow_horizontal = 2
+script = ExtResource("1_rmrbt")

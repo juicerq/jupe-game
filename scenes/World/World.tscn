@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=4 uid="uid://cklhpy5bnv642"]
+[gd_scene load_steps=13 format=4 uid="uid://cklhpy5bnv642"]
 
 [ext_resource type="Texture2D" uid="uid://c7ntbsq8en0f3" path="res://assets/Tilemap/tilemap_packed.png" id="1_fngvn"]
 [ext_resource type="Script" uid="uid://bvd7vedcmiph7" path="res://scenes/World/Scripts/world.gd" id="1_hkgio"]
 [ext_resource type="Texture2D" uid="uid://dnsb7bqpl7cdn" path="res://assets/robinHood_ v1.1/weapons_.png" id="2_hkgio"]
 [ext_resource type="Script" uid="uid://oadldmuelnxt" path="res://scenes/World/Scripts/wave.gd" id="2_kurpr"]
-[ext_resource type="PackedScene" uid="uid://cobe437juc2n7" path="res://scenes/Player/Player.tscn" id="3_kurpr"]
+[ext_resource type="PackedScene" uid="uid://jcufghd8s5pv" path="res://scenes/Player/Experience/UI/progress_bar.tscn" id="2_p47ta"]
+[ext_resource type="PackedScene" uid="uid://cobe437juc2n7" path="res://scenes/Player/Archer.tscn" id="3_kurpr"]
 [ext_resource type="Script" uid="uid://cafage6df4o14" path="res://scenes/World/Scripts/PlayerCamera.gd" id="5_ictkp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rwgxs"]
@@ -171,7 +172,7 @@ script = ExtResource("1_hkgio")
 
 [node name="EnemyWave" type="Node" parent="." node_paths=PackedStringArray("Player", "Camera")]
 script = ExtResource("2_kurpr")
-Player = NodePath("../Player")
+Player = NodePath("../Archer")
 Camera = NodePath("../Camera")
 
 [node name="Ground" type="TileMapLayer" parent="."]
@@ -186,7 +187,7 @@ tile_map_data = PackedByteArray("AAD+////AAADAAAAAAABAAAAAAADAAAAAAD+/wAAAAADAAA
 enabled = false
 tile_set = SubResource("TileSet_k0juu")
 
-[node name="Player" parent="." instance=ExtResource("3_kurpr")]
+[node name="Archer" parent="." instance=ExtResource("3_kurpr")]
 unique_name_in_owner = true
 z_index = 1
 y_sort_enabled = true
@@ -195,9 +196,17 @@ movement_speed = 100.0
 [node name="Camera" type="Camera2D" parent="." node_paths=PackedStringArray("body_to_follow")]
 zoom = Vector2(2.5, 2.5)
 script = ExtResource("5_ictkp")
-body_to_follow = NodePath("../Player")
+body_to_follow = NodePath("../Archer")
+
+[node name="ProgressBar" parent="Camera" instance=ExtResource("2_p47ta")]
+z_index = 10
+offset_left = -255.0
+offset_top = -153.0
+offset_right = 255.0
+offset_bottom = -140.0
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
+[connection signal="player_gained_experience" from="Archer" to="Camera/ProgressBar" method="_on_archer_player_gained_experience"]
 [connection signal="timeout" from="Timer" to="EnemyWave" method="_on_timer_timeout"]

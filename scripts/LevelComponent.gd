@@ -9,6 +9,8 @@ var current_experience: float = 0
 var max_experience: float = 200
 var max_experience_increase_per_level: int = 20 # percentage
 
+signal level_changed(new_level: int)
+
 # TODO: create different stats for monster and players
 var stats_per_level: Dictionary = {
 	"attack": 5,
@@ -28,9 +30,8 @@ func update_max_experience():
 	max_experience = new_max_experience
 	
 	return
-	
+
 func handle_level_up():
-	player.stats_manager.recalculate_all_stats()
 	update_max_experience()
 
 func add_experience(amount: float) -> void:
@@ -38,15 +39,15 @@ func add_experience(amount: float) -> void:
 	
 	var should_level_up = current_experience >= max_experience
 	
-	print("[EXP] current_experience is ", current_experience, " and max is ", max_experience )
+	#print("[EXP] current_experience is ", current_experience, " and max is ", max_experience )
 	
 	if should_level_up:
 		var next_level = current_level + 1
 		
-		print("[EXP]: player level up from ", current_level, " to ", next_level)
+		#print("[EXP]: player level up from ", current_level, " to ", next_level)
 		
 		current_level = next_level
-		current_experience = current_experience - max_experience
+		current_experience = max(0, current_experience - max_experience)
 		
 		handle_level_up()
 	

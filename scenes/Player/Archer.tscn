@@ -1,109 +1,107 @@
-[gd_scene load_steps=26 format=3 uid="uid://cobe437juc2n7"]
+[gd_scene load_steps=20 format=3 uid="uid://cobe437juc2n7"]
 
-[ext_resource type="Script" uid="uid://dou4jvx31e4vr" path="res://scenes/Player/Scripts/Player.gd" id="1_g2brh"]
+[ext_resource type="Script" uid="uid://d0e1rkkqmnga0" path="res://scenes/Player/Archer.gd" id="1_ifbkh"]
 [ext_resource type="Script" uid="uid://dqp0iw4nkxyn4" path="res://scripts/StatsComponent.gd" id="2_70d11"]
 [ext_resource type="Script" uid="uid://dlnv0wjvxdpxo" path="res://scripts/LevelComponent.gd" id="2_cw2d6"]
 [ext_resource type="Texture2D" uid="uid://drwlrmy641yuw" path="res://assets/robinHood_ v1.1/robinHood_.png" id="2_g2brh"]
 [ext_resource type="Script" uid="uid://v5q16ak0mw7r" path="res://scripts/HealthComponent.gd" id="2_qu4a1"]
-[ext_resource type="Texture2D" uid="uid://dnsb7bqpl7cdn" path="res://assets/robinHood_ v1.1/weapons_.png" id="3_dn4c7"]
-[ext_resource type="PackedScene" uid="uid://188c4t5l81e3" path="res://scenes/Weapons/Base.tscn" id="6_socpp"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_70d11"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfl62"]
 atlas = ExtResource("2_g2brh")
 region = Rect2(0, 120, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cw2d6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4na0f"]
 atlas = ExtResource("2_g2brh")
 region = Rect2(24, 120, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_khinc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_a14wf"]
 atlas = ExtResource("2_g2brh")
 region = Rect2(48, 120, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bruh7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdpr1"]
 atlas = ExtResource("2_g2brh")
 region = Rect2(72, 120, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_g2brh"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnswx"]
 atlas = ExtResource("2_g2brh")
 region = Rect2(0, 0, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t53lx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_vemp5"]
 atlas = ExtResource("2_g2brh")
 region = Rect2(24, 0, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yi2kj"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_chj1g"]
 atlas = ExtResource("2_g2brh")
 region = Rect2(48, 0, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cibgq"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1rnrc"]
 atlas = ExtResource("2_g2brh")
 region = Rect2(72, 0, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dn4c7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkexp"]
 atlas = ExtResource("2_g2brh")
 region = Rect2(0, 48, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4vejd"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7g4b"]
 atlas = ExtResource("2_g2brh")
 region = Rect2(24, 48, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ws0vm"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bt14q"]
 atlas = ExtResource("2_g2brh")
 region = Rect2(48, 48, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rhr3r"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7nbq"]
 atlas = ExtResource("2_g2brh")
 region = Rect2(72, 48, 24, 24)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_8nwgm"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_qfl62"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_70d11")
+"texture": SubResource("AtlasTexture_qfl62")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cw2d6")
+"texture": SubResource("AtlasTexture_4na0f")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_khinc")
+"texture": SubResource("AtlasTexture_a14wf")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bruh7")
+"texture": SubResource("AtlasTexture_tdpr1")
 }],
-"loop": false,
-"name": &"die",
-"speed": 4.0
+"loop": true,
+"name": &"death",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_g2brh")
+"texture": SubResource("AtlasTexture_fnswx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_t53lx")
+"texture": SubResource("AtlasTexture_vemp5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yi2kj")
+"texture": SubResource("AtlasTexture_chj1g")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cibgq")
+"texture": SubResource("AtlasTexture_1rnrc")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 4.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dn4c7")
+"texture": SubResource("AtlasTexture_mkexp")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4vejd")
+"texture": SubResource("AtlasTexture_p7g4b")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ws0vm")
+"texture": SubResource("AtlasTexture_bt14q")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rhr3r")
+"texture": SubResource("AtlasTexture_e7nbq")
 }],
 "loop": true,
 "name": &"walk",
@@ -113,87 +111,32 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2brh"]
 size = Vector2(14, 22)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fxc31"]
-atlas = ExtResource("3_dn4c7")
-region = Rect2(12, 0, 12, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_puxyr"]
-atlas = ExtResource("3_dn4c7")
-region = Rect2(24, 0, 12, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mmokv"]
-atlas = ExtResource("3_dn4c7")
-region = Rect2(36, 0, 12, 24)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_tl8lu"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fxc31")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_puxyr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mmokv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fxc31")
-}],
-"loop": false,
-"name": &"attack",
-"speed": 8.0
-}]
-
-[node name="Archer" type="CharacterBody2D" node_paths=PackedStringArray("level_manager", "stats_manager", "health_manager", "sprite_manager") groups=["Player"]]
+[node name="Archer" type="CharacterBody2D" groups=["Player"]]
 z_index = 2
-script = ExtResource("1_g2brh")
-level_manager = NodePath("LevelComponent")
-stats_manager = NodePath("StatsComponent")
-health_manager = NodePath("HealthComponent")
-sprite_manager = NodePath("Sprite")
+script = ExtResource("1_ifbkh")
 
 [node name="LevelComponent" type="Node" parent="." node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
 script = ExtResource("2_cw2d6")
 player = NodePath("..")
 
-[node name="StatsComponent" type="Node" parent="." node_paths=PackedStringArray("Level")]
+[node name="StatsComponent" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2_70d11")
-max_health = 50
-attack = 100
-critical_chance = 20.0
-critical_damage = 50.0
-defense = 10
-Level = NodePath("../LevelComponent")
 metadata/_custom_type_script = "uid://dqp0iw4nkxyn4"
 
-[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("Stats", "Sprite", "Collision")]
+[node name="HealthComponent" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2_qu4a1")
-Stats = NodePath("../StatsComponent")
-Sprite = NodePath("../Sprite")
-Collision = NodePath("../Collision")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-y_sort_enabled = true
-sprite_frames = SubResource("SpriteFrames_8nwgm")
-animation = &"die"
+sprite_frames = SubResource("SpriteFrames_qfl62")
+animation = &"death"
 autoplay = "idle"
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_g2brh")
-
-[node name="FloatingWeapon" parent="." node_paths=PackedStringArray("player", "stats", "Sprite") instance=ExtResource("6_socpp")]
-player = NodePath("..")
-stats = NodePath("../StatsComponent")
-Sprite = NodePath("BowSprite")
-
-[node name="BowSprite" type="AnimatedSprite2D" parent="FloatingWeapon"]
-sprite_frames = SubResource("SpriteFrames_tl8lu")
-animation = &"attack"
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]

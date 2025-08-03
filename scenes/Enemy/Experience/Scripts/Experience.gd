@@ -18,7 +18,7 @@ func _on_collect_body_entered(body: Node2D):
 	if not body is Player: return
 	
 	if body is Player:
-		body.level_manager.add_experience(experience_amount)
+		body.level_component.add_experience(experience_amount)
 	
 	queue_free()
 

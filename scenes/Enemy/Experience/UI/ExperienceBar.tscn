@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://jcufghd8s5pv"]
 
-[ext_resource type="Script" uid="uid://b7war4pun8bmc" path="res://scenes/Player/Experience/UI/ExperienceBar.gd" id="1_rmrbt"]
+[ext_resource type="Script" uid="uid://b7war4pun8bmc" path="res://scenes/Enemy/Experience/UI/ExperienceBar.gd" id="1_rmrbt"]
 
 [node name="ProgressBar" type="ProgressBar"]
 anchors_preset = 10

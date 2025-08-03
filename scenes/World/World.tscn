@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://c7ntbsq8en0f3" path="res://assets/Tilemap/tilemap_packed.png" id="1_fngvn"]
 [ext_resource type="Script" uid="uid://bvd7vedcmiph7" path="res://scenes/World/Scripts/world.gd" id="1_hkgio"]
 [ext_resource type="Script" uid="uid://oadldmuelnxt" path="res://scenes/World/Scripts/wave.gd" id="2_kurpr"]
-[ext_resource type="PackedScene" uid="uid://jcufghd8s5pv" path="res://scenes/Player/Experience/UI/ExperienceBar.tscn" id="2_p47ta"]
+[ext_resource type="PackedScene" uid="uid://jcufghd8s5pv" path="res://scenes/Enemy/Experience/UI/ExperienceBar.tscn" id="2_p47ta"]
 [ext_resource type="PackedScene" uid="uid://cobe437juc2n7" path="res://scenes/Player/Archer.tscn" id="3_kurpr"]
 [ext_resource type="Script" uid="uid://cafage6df4o14" path="res://scenes/World/Scripts/PlayerCamera.gd" id="5_ictkp"]
 

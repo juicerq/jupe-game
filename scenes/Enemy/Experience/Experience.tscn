@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://dlfyrafapbr0"]
 
-[ext_resource type="Script" uid="uid://h60xil7o80kf" path="res://scenes/Player/Experience/Scripts/Experience.gd" id="1_1a78g"]
+[ext_resource type="Script" uid="uid://h60xil7o80kf" path="res://scenes/Enemy/Experience/Scripts/Experience.gd" id="1_1a78g"]
 [ext_resource type="Texture2D" uid="uid://88ora0omcj6h" path="res://assets/All.png" id="2_wjxtv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iudx8"]

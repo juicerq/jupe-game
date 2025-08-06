@@ -2,24 +2,24 @@ extends Player
 class_name Archer
 
 var stats_per_level: Dictionary = {
+	"max_health": 30,
 	"attack": 10,
-	"health": 5,
-	"critical_chance": 5,
-	"critical_damage": 5,
-	"defense": 5,
-	"max_health": 10
+	"critical_chance": 0,
+	"critical_damage": 0,
+	"defense": 5
 }
 
 func _ready() -> void:
-	setup_archer_connections()
+	_setup_archer_connections()
+	_add_level_stats_bonuses(level_component.current_level)
 	
-func setup_archer_connections():
+func _setup_archer_connections():
 	level_component.level_changed.connect(_on_level_up)
 
 func _on_level_up(new_level: int):
-	add_level_stats_bonuses(new_level)
+	_add_level_stats_bonuses(new_level)
 
-func add_level_stats_bonuses(new_level: int):
+func _add_level_stats_bonuses(new_level: int):
 	var bonuses = {}
 	
 	for stat_name in stats_per_level:

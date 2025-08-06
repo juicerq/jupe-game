@@ -1,0 +1,29 @@
+---
+description: Leia esta regra quando precisar adicionar, organizar, referenciar ou otimizar assets (imagens, áudios, etc.) no projeto Godot. Use-a ao importar novos arquivos, definir caminhos em scripts, organizar pastas de assets ou revisar práticas de nomenclatura e limpeza de assets.
+globs:
+alwaysApply: false
+---
+
+# Asset Management
+
+- Store all images, audio, and other assets in the `assets/` directory.
+- Organize assets by type (e.g., `Tiles/`, `Sprites/`, `Audio/`) or feature.
+- Do not edit `.import` files directly; these are managed by Godot.
+- Use lossless formats (PNG, WAV) for source assets when possible.
+- Optimize asset sizes for performance, especially for web or mobile builds.
+- Reference assets in scenes/scripts using `res://assets/...` paths.
+- Remove unused assets to keep the project clean.
+- Keep asset names descriptive and consistent.
+- Avoid spaces and special characters in asset filenames.
+- Use Godot's import settings for compression and resolution as needed.
+
+## Example
+```
+assets/
+  Tiles/
+    All.png
+    All.png.import
+  Audio/
+    jump.wav
+    jump.wav.import
+```

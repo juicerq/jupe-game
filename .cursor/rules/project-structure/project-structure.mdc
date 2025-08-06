@@ -1,0 +1,41 @@
+---
+description: Leia esta regra ao criar, mover ou organizar arquivos e pastas do projeto, especialmente cenas, scripts e assets. Use-a ao estruturar novos recursos, revisar a organização do projeto ou garantir consistência na disposição dos arquivos.
+globs:
+alwaysApply: false
+---
+
+# Project Structure & Organization
+
+- Organize scenes by feature (e.g., Player, Enemy, Weapons) in the `scenes/` directory.
+- Place reusable scripts in the `scripts/` directory.
+- Store all assets (images, audio, etc.) in the `assets/` directory, organized by type or feature.
+- Use subdirectories for complex features (e.g., `scenes/Weapons/Bow/`).
+- Scene files should have the `.tscn` extension; resources should use `.tres`.
+- Scripts should be named after the node or feature they attach to (e.g., `Player.gd`).
+- Avoid cluttering the root directory; keep only configuration and entry-point files there.
+- Use consistent naming and casing across all files and folders.
+- Remove unused or temporary files regularly.
+
+## Example Structure
+```
+scenes/
+  Player/
+    Player.tscn
+    Archer.tscn
+  Enemy/
+    Enemy.tscn
+    Scripts/
+      Enemy.gd
+  Weapons/
+    Bow/
+      Bow.tscn
+      Scripts/
+        Bow.gd
+scripts/
+  HealthComponent.gd
+  LevelComponent.gd
+assets/
+  Tiles/
+  Sprites/
+  Audio/
+```

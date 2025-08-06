@@ -6,7 +6,7 @@ var current_health: int = max_health
 var is_dead: bool = false
 
 signal died
-signal health_changed(current: int, max: int)
+signal health_changed()
 
 func _ready():
 	current_health = max_health
@@ -14,6 +14,9 @@ func _ready():
 func take_damage(amount: int):
 	current_health -= amount
 	
+	health_changed.emit()
+	
 	if current_health <= 0 and not is_dead:
+		is_dead = true
 		died.emit()
 		return

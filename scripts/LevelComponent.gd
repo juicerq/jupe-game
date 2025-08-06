@@ -7,21 +7,11 @@ class_name LevelComponent
 var current_experience: float = 0
 
 var max_experience: float = 200
-var max_experience_increase_per_level: int = 20 # percentage
+var max_experience_increase_per_level: int = 20 # in percentage
 
 signal level_changed(new_level: int)
 
-# TODO: create different stats for monster and players
-var stats_per_level: Dictionary = {
-	"attack": 5,
-	"health": 5,
-	"critical_chance": 5,
-	"critical_damage": 5,
-	"defense": 5,
-	"max_health": 10
-}
-
-func update_max_experience():
+func _handle_level_up():
 	if current_level == 1:
 		return
 	
@@ -30,9 +20,6 @@ func update_max_experience():
 	max_experience = new_max_experience
 	
 	return
-
-func handle_level_up():
-	update_max_experience()
 
 func add_experience(amount: float) -> void:
 	current_experience += amount
@@ -48,8 +35,9 @@ func add_experience(amount: float) -> void:
 		
 		current_level = next_level
 		current_experience = max(0, current_experience - max_experience)
+		level_changed.emit(current_level)
 		
-		handle_level_up()
+		_handle_level_up()
 	
 	if (player):
 		player.player_gained_experience.emit(current_experience, max_experience)

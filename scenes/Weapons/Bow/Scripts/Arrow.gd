@@ -8,13 +8,9 @@ var damage = 10
 func _ready() -> void:
 	%ArrowArea.body_entered.connect(_on_body_entered)
 	
-func _on_body_entered(body):
-	if body.is_in_group("Enemies"):
-		var body_health = body.get_node("HealthComponent")
-		
-		if (not body_health): push_error("Enemy with no health component")
-		
-		body_health.take_damage(damage)
+func _on_body_entered(body: Node2D):
+	if body is Enemy:
+		body.HealthComponent.take_damage(damage)
 		
 		queue_free()
 

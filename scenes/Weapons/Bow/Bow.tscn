@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://188c4t5l81e3"]
+
+[ext_resource type="Script" uid="uid://bni07m8mxcym6" path="res://scenes/Weapons/Bow/Scripts/Bow.gd" id="1_trvtx"]
+[ext_resource type="Texture2D" uid="uid://dnsb7bqpl7cdn" path="res://assets/robinHood_ v1.1/weapons_.png" id="2_liwpx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jg5rk"]
+atlas = ExtResource("2_liwpx")
+region = Rect2(15.7923, 1.69082, 6.65477, 21.4032)
+
+[node name="Bow" type="Node2D"]
+script = ExtResource("1_trvtx")
+
+[node name="AttackTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
+[node name="AttackStartPosition" type="Marker2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = SubResource("AtlasTexture_jg5rk")
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

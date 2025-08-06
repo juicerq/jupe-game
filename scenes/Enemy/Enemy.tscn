@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bvhexletb3i7r"]
+[gd_scene load_steps=26 format=3 uid="uid://bvhexletb3i7r"]
 
 [ext_resource type="Script" uid="uid://bb6iv0v1hws4y" path="res://scenes/Enemy/Scripts/Enemy.gd" id="1_55jtl"]
 [ext_resource type="Script" uid="uid://dlnv0wjvxdpxo" path="res://scripts/LevelComponent.gd" id="2_5wwv6"]
@@ -21,6 +21,10 @@ region = Rect2(64, 256, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_1gqeq"]
 atlas = ExtResource("2_mpr68")
 region = Rect2(96, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6xdp"]
+atlas = ExtResource("2_mpr68")
+region = Rect2(64, 224, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ft8do"]
 atlas = ExtResource("2_mpr68")
@@ -86,8 +90,16 @@ animations = [{
 "texture": SubResource("AtlasTexture_1gqeq")
 }],
 "loop": false,
-"name": &"die",
+"name": &"death",
 "speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b6xdp")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -142,43 +154,37 @@ size = Vector2(12, 15)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mpr68"]
 size = Vector2(14, 17)
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("DamageArea", "HealthComponent", "Sprite", "StatsComponent") groups=["Enemies"]]
+[node name="Enemy" type="CharacterBody2D" groups=["Enemies"]]
 z_index = 2
 y_sort_enabled = true
 script = ExtResource("1_55jtl")
-DamageArea = NodePath("DamageArea")
-HealthComponent = NodePath("HealthComponent")
-Sprite = NodePath("Sprite")
-StatsComponent = NodePath("StatsComponent")
 speed = 30
 experience_drop = 20.0
 
 [node name="LevelComponent" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("2_5wwv6")
 metadata/_custom_type_script = "uid://dlnv0wjvxdpxo"
 
-[node name="StatsComponent" type="Node" parent="." node_paths=PackedStringArray("Level")]
+[node name="StatsComponent" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("2_ft8do")
-max_health = 30
-attack = 10
-critical_chance = 5.0
-critical_damage = 50.0
-defense = 10
-Level = NodePath("../LevelComponent")
+base_max_health = 100
+base_attack = 10
 metadata/_custom_type_script = "uid://dqp0iw4nkxyn4"
 
-[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("Stats", "Sprite", "Collision")]
+[node name="HealthComponent" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("3_mpr68")
-Stats = NodePath("../StatsComponent")
-Sprite = NodePath("../Sprite")
-Collision = NodePath("../Collision")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_1i2q2")
-animation = &"walk"
+animation = &"hurt"
 autoplay = "idle"
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_ft8do")
 
@@ -187,5 +193,3 @@ shape = SubResource("RectangleShape2D_ft8do")
 [node name="Collision" type="CollisionShape2D" parent="DamageArea"]
 position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_mpr68")
-
-[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]

@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://cobe437juc2n7"]
+[gd_scene load_steps=21 format=3 uid="uid://cobe437juc2n7"]
 
 [ext_resource type="Script" uid="uid://d0e1rkkqmnga0" path="res://scenes/Player/Archer.gd" id="1_ifbkh"]
 [ext_resource type="Script" uid="uid://dqp0iw4nkxyn4" path="res://scripts/StatsComponent.gd" id="2_70d11"]
 [ext_resource type="Script" uid="uid://dlnv0wjvxdpxo" path="res://scripts/LevelComponent.gd" id="2_cw2d6"]
 [ext_resource type="Texture2D" uid="uid://drwlrmy641yuw" path="res://assets/robinHood_ v1.1/robinHood_.png" id="2_g2brh"]
 [ext_resource type="Script" uid="uid://v5q16ak0mw7r" path="res://scripts/HealthComponent.gd" id="2_qu4a1"]
+[ext_resource type="PackedScene" uid="uid://188c4t5l81e3" path="res://scenes/Weapons/Bow/Bow.tscn" id="6_vemp5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qfl62"]
 atlas = ExtResource("2_g2brh")
@@ -138,5 +139,8 @@ autoplay = "idle"
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_g2brh")
+
+[node name="Bow" parent="." node_paths=PackedStringArray("Player") instance=ExtResource("6_vemp5")]
+Player = NodePath("..")
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]

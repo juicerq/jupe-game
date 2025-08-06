@@ -1,0 +1,42 @@
+---
+alwaysApply: true
+---
+# Core Project Context & Rules Index
+
+Welcome to the jupe-game Godot 4 project! This codebase is organized for clarity, maintainability, and scalability, using GDScript and Godot's best practices. All contributors and AI agents must follow the rules system below to ensure consistency and quality.
+
+## 🚦 EXTREMELY GUIDED INSTRUCTION FOR LLMs
+
+**Before making any change, answering a question, or generating code, you MUST:**
+1. Read this `core.mdc` file in full.
+2. Review the rules list below and, based on the task context, decide which topic-specific rules to read in detail.
+3. For any task, always check if a relevant rule exists in `.cursor/rules/[TOPIC_NAME]/`. If so, read it fully before proceeding.
+4. If you encounter a new pattern, convention, or requirement not covered by existing rules, IMMEDIATELY create a new rule as described in the `create-new-rule.mdc` file.
+5. When in doubt, prefer explicitness and over-communication in rule usage and creation.
+
+## 📚 Rules List (by Topic)
+
+**For each topic, read the rules in the corresponding folder for detailed, actionable guidance.**
+
+- **GDScript Style & Godot Best Practices**
+  - `.cursor/rules/gdscript-style/gdscript-style.mdc` — Naming, structure, idioms, and code examples for GDScript and Godot 4.
+
+- **Project Structure & Organization**
+  - `.cursor/rules/project-structure/project-structure.mdc` — Directory layout, file naming, and organization principles.
+
+- **Asset Management**
+  - `.cursor/rules/asset-management/asset-management.mdc` — How to store, name, and reference assets; import/export guidelines.
+
+- **Ignore Patterns & File Exclusions**
+  - `.cursor/rules/ignore-files/ignore-files.mdc` — What files/folders to ignore for search, navigation, and version control.
+
+- **Creating New Rules**
+  - `.cursor/rules/create-new-rule.mdc` — Step-by-step instructions for adding new rules when new patterns or requirements are discovered.
+
+## 🛠️ How to Use and Extend This Rules System
+- Always keep this `core.mdc` and the rules list up to date.
+- When adding a new rule, update the rules list above.
+- If a rule is deprecated or replaced, mark it as such and update references.
+- Use clear, actionable, and example-driven language in all rules.
+
+**This rules system is the single source of truth for all code, structure, and process conventions in this project.**

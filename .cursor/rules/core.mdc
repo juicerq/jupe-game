@@ -21,6 +21,9 @@ Welcome to the jupe-game Godot 4 project! This codebase is organized for clarity
 - **GDScript Style & Godot Best Practices**
   - `.cursor/rules/gdscript-style/gdscript-style.mdc` — Naming, structure, idioms, and code examples for GDScript and Godot 4.
 
+- **Scene & Node Naming**
+  - `.cursor/rules/scene-and-node-naming/scene-and-node-naming.mdc` — Padrões de nomes para cenas, nós, grupos e arquivos.
+
 - **Project Structure & Organization**
   - `.cursor/rules/project-structure/project-structure.mdc` — Directory layout, file naming, and organization principles.
 
@@ -32,6 +35,21 @@ Welcome to the jupe-game Godot 4 project! This codebase is organized for clarity
 
 - **Creating New Rules**
   - `.cursor/rules/create-new-rule.mdc` — Step-by-step instructions for adding new rules when new patterns or requirements are discovered.
+
+- **Groups & Signals**
+  - `.cursor/rules/godot-groups-and-signals/godot-groups-and-signals.mdc` — Convenções de grupos e sinais (conexão, nomes, tipagem).
+
+- **Components Architecture**
+  - `.cursor/rules/components-architecture/components-architecture.mdc` — Padrões de componentes (ex.: `HealthComponent`, `StatsComponent`).
+
+- **Input Actions**
+  - `.cursor/rules/input-actions/input-actions.mdc` — Padrões para nomes e mapeamento de ações de input.
+
+- **Animations**
+  - `.cursor/rules/animations/animations.mdc` — Convenções de nomes, transições e playback.
+
+- **Resource Loading**
+  - `.cursor/rules/resource-loading/resource-loading.mdc` — Diretrizes de `preload()` vs `load()`, caminhos e centralização de recursos.
 
 ## 🛠️ How to Use and Extend This Rules System
 - Always keep this `core.mdc` and the rules list up to date.

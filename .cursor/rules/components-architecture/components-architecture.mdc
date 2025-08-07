@@ -1,0 +1,37 @@
+---
+title: Arquitetura de Componentes
+description: Padrões para componentes reutilizáveis como `HealthComponent`, `StatsComponent`, `LevelComponent`.
+alwaysApply: false
+---
+
+# Arquitetura de Componentes
+
+- Componentes devem ser nós autocontidos com API clara e sinais próprios.
+- Estados internos devem ser privados quando possível; exponha métodos como `take_damage(amount: int)`.
+- Sinais recomendados: `died`, `health_changed`, `level_changed`.
+- Componentes devem evitar conhecer seus consumidores (baixo acoplamento). Use sinais.
+- Tipar exports e propriedades; inicializar no `_ready()` quando dependente de outros nós.
+- Recalcular estatísticas ao subir de nível via um método dedicado como `recalculate_stats_with_bonuses(bonuses: Dictionary)`.
+
+## Exemplo (HealthComponent)
+```gdscript
+extends Node
+class_name HealthComponent
+
+@export var max_health: int = 100
+var current_health: int
+var is_dead: bool = false
+
+signal died
+signal health_changed()
+
+func _ready():
+    current_health = max_health
+
+func take_damage(amount: int):
+    current_health -= amount
+    health_changed.emit()
+    if current_health <= 0 and not is_dead:
+        is_dead = true
+        died.emit()
+```

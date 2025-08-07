@@ -15,6 +15,9 @@ description: Leia esta regra apenas quando for necessário entender quais arquiv
 ```
 .godot/
 **/.import
+**/*.import
 **/*.tmp
+/scenes/*/*.tmp
+/scenes/*/*/*.tmp
 /android/
 ```

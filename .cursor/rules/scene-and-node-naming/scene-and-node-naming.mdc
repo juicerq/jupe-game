@@ -1,0 +1,19 @@
+---
+title: Nomeação de Cenas, Nós, Grupos e Arquivos
+description: Convenções de nomenclatura para cenas (.tscn), nós, grupos e arquivos no Godot 4.
+alwaysApply: false
+---
+
+# Nomeação de Cenas, Nós, Grupos e Arquivos
+
+- Cenas: `PascalCase.tscn` (ex.: `World.tscn`, `Enemy.tscn`, `Experience.tscn`).
+- Scripts: `PascalCase.gd` quando definirem `class_name`; caso contrário, `FeatureName.gd` seguindo o nó alvo.
+- Nós filhos comuns: use nomes descritivos em `PascalCase` (ex.: `Sprite`, `DamageArea`, `Collision`).
+- Grupos: `PascalCase` no singular para tipo e plural para coleções lógicas globais. Exemplos: `Player`, `Enemies`.
+- Sinais: callbacks como `_on_<NodeName>_<signal>()` (ex.: `_on_health_died`, `_on_body_entered`).
+- Assets: `snake_case` e sem espaços; evite caracteres especiais. Ex.: `robin_hood.png`.
+- Constantes: `UPPER_SNAKE_CASE`.
+
+## Notas do projeto
+- O projeto já usa `Player`, `Enemies` e nós como `DamageArea`, `HealthComponent`, `Sprite`. Mantenha consistência.
+- Evite arquivos `*.tmp` nos diretórios de cenas. Use somente `.tscn` válidos.

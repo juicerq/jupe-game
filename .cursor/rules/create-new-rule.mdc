@@ -1,0 +1,33 @@
+---
+title: Como criar uma nova regra
+description: Passo a passo para adicionar novas regras quando padrões/convenções emergirem no projeto.
+alwaysApply: false
+---
+
+# Criando uma nova regra
+
+1. Crie uma pasta temática em `.cursor/rules/<tema>/` se ainda não existir.
+2. Adicione um arquivo `.mdc` com metadados no topo (title, description, alwaysApply) e conteúdo enxuto e acionável.
+3. Atualize `.cursor/rules/core.mdc` adicionando a nova regra à lista de tópicos.
+4. Inclua exemplos mínimos e específicos do projeto.
+5. Prefira português claro e objetivo; use listas e trechos de código curtos.
+
+## Modelo
+```
+---
+title: <Título curto>
+description: <Quando usar esta regra>
+alwaysApply: false
+---
+
+# <Título>
+
+- Prática 1
+- Prática 2
+
+## Exemplo
+```gdscript
+# código curto e direto
+```
+```
+

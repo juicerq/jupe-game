@@ -1,0 +1,38 @@
+---
+title: Grupos & Sinais no Godot 4
+description: Convenções para criação, conexão e uso de grupos e sinais.
+alwaysApply: false
+---
+
+# Grupos & Sinais
+
+## Grupos
+- Use grupos para consultas globais eficientes: `get_tree().get_nodes_in_group("Player") as Array[Player]`.
+- Adicione/remova grupos em `_ready()` e antes de `queue_free()`.
+- Nomes recomendados no projeto: `Player`, `Enemies`, `Projectiles`, `Pickups`.
+
+## Sinais
+- Defina sinais no topo do script com nomes verbosos: `signal health_changed()`, `signal died`.
+- Centralize conexão de sinais em um método (ex.: `_setup_signals_connections()`).
+- Conecte em `_ready()` e desconecte quando necessário (ex.: antes de filas de remoção).
+- Callbacks devem ser tipados quando possível e nomeados como `_on_<contexto>_<evento>()`.
+
+## Exemplo
+```gdscript
+extends CharacterBody2D
+
+signal attacked(amount: int)
+
+@onready var health: HealthComponent = $HealthComponent
+
+func _setup_signals_connections():
+    health.died.connect(_on_health_died)
+
+func _ready() -> void:
+    add_to_group("Enemies")
+    _setup_signals_connections()
+
+func _on_health_died() -> void:
+    remove_from_group("Enemies")
+    queue_free()
+```

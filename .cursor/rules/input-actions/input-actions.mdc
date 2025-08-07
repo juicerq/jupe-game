@@ -1,0 +1,20 @@
+---
+title: Input Actions
+description: Convenções para nomes e uso de ações de input no Godot 4.
+alwaysApply: false
+---
+
+# Input Actions
+
+- Use nomes curtos e consistentes para ações: `w`, `a`, `s`, `d` para movimento; `attack_primary`, `attack_secondary` para ações.
+- Acesse com `Input.get_axis("a", "d")`/`Input.get_axis("w", "s")` para vetores de movimento como no `Player`.
+- Não faça hardcode de teclas; sempre use actions no `project.godot`.
+- Documente as actions no README ou nesta regra quando adicionar novas.
+
+## Exemplo
+```gdscript
+var direction := Vector2(
+    Input.get_axis("a", "d"),
+    Input.get_axis("w", "s")
+).normalized()
+```

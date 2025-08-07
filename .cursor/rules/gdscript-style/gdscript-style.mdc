@@ -8,18 +8,22 @@ alwaysApply: false
 
 - Use snake_case for variable and function names.
 - Use PascalCase for class names.
-- Each script should define a single class or component.
-- Prefer composition (nodes/scenes) over inheritance when possible.
-- Use Godot's signal system for decoupled communication between nodes.
-- Use `@export` for editor-exposed variables.
-- Use `@onready` for node references that require the scene tree.
-- Keep scripts focused and under 200 lines when possible.
-- Document complex functions with comments.
-- Use Godot's built-in types (Vector2, Color, etc.) for clarity and performance.
-- Avoid hardcoding resource paths; use `preload()` or `load()`.
-- Use `_ready()` for initialization, `_process(delta)` for per-frame logic, and `_physics_process(delta)` for physics.
-- Prefer signals over polling for event-driven logic.
-- Use groups for managing collections of nodes (e.g., all enemies).
+- Each script should define a single class or component e ter `class_name` quando for reutilizável.
+- Prefer composition (nodes/scenes) over inheritance quando possível.
+- Use Godot's signal system para comunicação desacoplada; sempre tipar parâmetros de callbacks.
+- Use `@export` para variáveis expostas no editor e inclua o tipo: `@export var speed: float = 200.0`.
+- Use `@onready` para referências a nós que requerem a árvore de cena; tipar as referências.
+- Mantenha scripts focados e idealmente < 200 linhas.
+- Documente funções complexas com docstrings concisas (o "porquê").
+- Use tipos nativos (Vector2, Color, etc.) por clareza e performance.
+- Evite hardcode de paths; prefira `preload()` para assets estáticos e `load()` para dinâmicos.
+- `_ready()` para inicialização, `_process(delta)` para lógica por frame, `_physics_process(delta)` para física.
+- Prefira sinais a polling para lógica orientada a eventos.
+- Use grupos para gerenciar coleções de nós (ex.: `Player`, `Enemies`).
+- Conexão de sinais: centralize em um método dedicado (ex.: `_setup_signals_connections()`), chame em `_ready()`.
+- Ordem sugerida no script: constantes, exports, onready, signals, variáveis, lifecycle callbacks, sinais, API pública, helpers privados.
+- Nomeie callbacks de sinais como `_on_<node>_<signal>()`.
+- Evite abreviações em nomes; seja descritivo.
 
 ## Example
 ```gdscript
@@ -34,3 +38,8 @@ func _ready():
 func _process(delta):
     position.x += speed * delta
 ```
+
+## Padrões específicos observados no projeto
+- Componentes como `HealthComponent`, `StatsComponent`, `LevelComponent` devem expor sinais claros (`died`, `health_changed`, `level_changed`) e manter estado encapsulado com getters/setters quando necessário.
+- Callbacks de morte devem desativar física/lógica e acionar animações antes de `queue_free()`.
+- Use `all`/`any` de `Array` com funções puras para verificações globais (ex.: verificar todos jogadores mortos) e tipagem explícita do array: `as Array[Player]`.

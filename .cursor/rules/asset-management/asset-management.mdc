@@ -17,6 +17,12 @@ alwaysApply: false
 - Avoid spaces and special characters in asset filenames.
 - Use Godot's import settings for compression and resolution as needed.
 
+## Convenções específicas do projeto
+- Pastas existentes como `assets/Tiles`, `assets/Tilemap`, `assets/fantasy_ [version 2.0]`, `assets/robinHood_ v1.0/v1.1` contêm spritesheets e variações. Padronize futuras pastas para evitar espaços e sufixos ambíguos. Ex.: `assets/characters/robin_hood/v1/`.
+- Ao referenciar recursos em scripts, sempre use `preload("res://...")` para cenas/recursos estáticos como `Experience.tscn`.
+- Quando múltiplas cenas usarem o mesmo recurso, considere centralizar `preload`s em um autoload de constantes (ver `resource-loading`).
+- Remova arquivos temporários `*.tmp` de cenas e mantenha apenas `.tscn` válidos.
+
 ## Example
 ```
 assets/

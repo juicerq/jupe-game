@@ -1,0 +1,20 @@
+---
+title: Animações
+description: Convenções para nomes, transições e playback de animações (AnimatedSprite2D / AnimationPlayer).
+alwaysApply: false
+---
+
+# Animações
+
+- Nomes padrão: `idle`, `walk`, `hurt`, `death`, `attack`.
+- Mude `flip_h` com base na direção X para espelhamento.
+- Garanta que animação `death` complete antes de `queue_free()` (use `await animation_finished`).
+- Evite setar a mesma animação desnecessariamente; cheque `if sprite.animation != "walk"`.
+
+## Exemplo
+```gdscript
+if direction:
+    sprite.play("walk")
+else:
+    sprite.play("idle")
+```

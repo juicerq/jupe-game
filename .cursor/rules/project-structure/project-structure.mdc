@@ -16,6 +16,13 @@ alwaysApply: false
 - Use consistent naming and casing across all files and folders.
 - Remove unused or temporary files regularly.
 
+## Convenções específicas do projeto
+- Scripts de componentes globais residem em `scripts/` (ex.: `HealthComponent.gd`, `StatsComponent.gd`, `LevelComponent.gd`).
+- Scripts específicos de cena ficam junto à cena dentro de `scenes/<Feature>/Scripts/`.
+- Cenas de UI ligadas a features devem residir sob a própria feature (ex.: `scenes/Enemy/Experience/UI/ExperienceBar.tscn`).
+- Crie subpastas para armas e variações (ex.: `scenes/Weapons/Bow/`).
+- Evite deixar arquivos temporários `*.tmp` no repositório; limpe-os periodicamente.
+
 ## Example Structure
 ```
 scenes/

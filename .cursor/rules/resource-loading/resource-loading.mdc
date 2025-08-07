@@ -1,0 +1,21 @@
+---
+title: Carregamento de Recursos (preload vs load)
+description: Diretrizes para quando usar `preload()` ou `load()` e como organizar caminhos de recursos.
+alwaysApply: false
+---
+
+# Carregamento de Recursos
+
+- Use `preload()` para recursos estáticos conhecidos em tempo de compilação (ex.: cenas de loot, projéteis, efeitos):
+  `var exp_scene := preload("res://scenes/Enemy/Experience/Experience.tscn")`.
+- Use `load()` para recursos dinâmicos com nomes calculados em runtime.
+- Prefira caminhos `res://` absolutos e estáveis. Evite caminhos relativos.
+- Quando múltiplas cenas usam o mesmo recurso, considere centralizar preloads em um singleton (autoload) `Resources.gd` com constantes.
+
+## Exemplo de Autoload
+```gdscript
+extends Node
+class_name Resources
+
+const EXPERIENCE_SCENE := preload("res://scenes/Enemy/Experience/Experience.tscn")
+```

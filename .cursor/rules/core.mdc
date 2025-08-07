@@ -16,7 +16,7 @@ Welcome to the jupe-game Godot 4 project! This codebase is organized for clarity
 
 ## 📚 Rules List (by Topic)
 
-**For each topic, read the rules in the corresponding folder for detailed, actionable guidance.**
+**ALWAYS check for each topic, read the rules in the corresponding folder for detailed, actionable guidance.**
 
 - **GDScript Style & Godot Best Practices**
   - `.cursor/rules/gdscript-style/gdscript-style.mdc` — Naming, structure, idioms, and code examples for GDScript and Godot 4.

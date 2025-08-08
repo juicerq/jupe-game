@@ -5,4 +5,4 @@ extends Camera2D
 func _physics_process(delta: float) -> void:
 	if not body_to_follow: return
 	
-	position = body_to_follow.position
+	global_position = body_to_follow.global_position

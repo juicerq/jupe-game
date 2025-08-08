@@ -13,6 +13,7 @@ Welcome to the jupe-game Godot 4 project! This codebase is organized for clarity
 3. For any task, always check if a relevant rule exists in `.cursor/rules/[TOPIC_NAME]/`. If so, read it fully before proceeding.
 4. If you encounter a new pattern, convention, or requirement not covered by existing rules, IMMEDIATELY create a new rule as described in the `create-new-rule.mdc` file.
 5. When in doubt, prefer explicitness and over-communication in rule usage and creation.
+6. ALWAYS USE TABS INSTEAD OF SPACES FOR LINES
 
 ## 📚 Rules List (by Topic)
 

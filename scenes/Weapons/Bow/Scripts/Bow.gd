@@ -11,8 +11,8 @@ func attack():
 	
 	get_tree().current_scene.add_child(arrow)
 	
-    arrow.damage = get_damage()
-    
+	arrow.damage = get_damage()
+	
 	arrow.global_position = AttackStartPosition.global_position
 	
 	arrow.direction = (get_global_mouse_position() - global_position).normalized()
